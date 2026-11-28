@@ -3,7 +3,7 @@ import {useState, useEffect} from "react";
 import ProductList from "./components/ProductList";
 
 const App = () => {
-  const [products, setPoducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -11,10 +11,10 @@ const App = () => {
     // Fetch data from json-server(local machine)
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/products");
+        const res = await fetch("/api/products");
         if (!res.ok) throw new Error("Failed to fetch the data");
         const data = await res.json();
-        setPoducts(data);
+        setProducts(data);
       } catch (err) {
         setError(err.message);
       } finally {
